@@ -1,0 +1,15 @@
+{
+  "name": "invitacion-graduacion",
+  "version": "1.0.0",
+  "description": "Invitación web de graduación (Promoción 2026) con panel de administración y base de datos invitacion.db",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node -e \"require('./db'); console.log('invitacion.db lista')\""
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

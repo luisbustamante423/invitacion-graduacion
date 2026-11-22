@@ -1,0 +1,4 @@
+node_modules
+*.log
+invitacion.db-wal
+invitacion.db-shm

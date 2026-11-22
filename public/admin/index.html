@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración · Invitación</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1d2024">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+  <!-- Acceso -->
+  <section class="login" id="login">
+    <form class="login-card" id="login-form" autocomplete="off">
+      <div class="lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 0 1 6 0v3H9Z"/></svg>
+      </div>
+      <h1>Administración</h1>
+      <p>Ingresa la contraseña para continuar.</p>
+      <input type="password" id="pw" placeholder="Contraseña" autocomplete="current-password" required autofocus>
+      <p class="err" id="login-err" role="alert" hidden></p>
+      <button class="btn" type="submit" id="login-btn">Entrar</button>
+      <a class="back" href="/">← Volver a la invitación</a>
+    </form>
+  </section>
+
+  <!-- Panel -->
+  <div class="panel" id="panel" hidden>
+    <header class="top">
+      <div class="top-in">
+        <strong>Panel de administración</strong>
+        <div class="top-actions">
+          <a class="btn-sm light" href="/" target="_blank" rel="noopener">Ver invitación</a>
+          <button class="btn-sm" id="logout" type="button">Cerrar sesión</button>
+        </div>
+      </div>
+      <nav class="tabs" id="tabs">
+        <button data-tab="dashboard" class="active" type="button">Resumen</button>
+        <button data-tab="content" type="button">Contenido</button>
+        <button data-tab="carousel" type="button">Carrusel</button>
+        <button data-tab="music" type="button">Música</button>
+        <button data-tab="rsvps" type="button">Confirmaciones</button>
+        <button data-tab="security" type="button">Seguridad</button>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      <section id="tab-dashboard" class="tabpane"></section>
+      <section id="tab-content" class="tabpane" hidden></section>
+      <section id="tab-carousel" class="tabpane" hidden></section>
+      <section id="tab-music" class="tabpane" hidden></section>
+      <section id="tab-rsvps" class="tabpane" hidden></section>
+      <section id="tab-security" class="tabpane" hidden></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

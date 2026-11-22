@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Invitación · Promoción 2026</title>
+  <meta name="theme-color" content="#2b2f35">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Great+Vibes&family=Italianno&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-locked">
+
+  <!-- 1. Pantalla obligatoria: activar ubicación -->
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="gate-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="54" height="54"><path d="M24 4C15.7 4 9 10.5 9 18.6 9 29.4 24 44 24 44s15-14.6 15-25.4C39 10.5 32.3 4 24 4Z" fill="#14161a"/><circle cx="24" cy="18.5" r="6" fill="#eceef1"/></svg>
+      </div>
+      <h1 id="gate-title"></h1>
+      <p id="gate-text"></p>
+      <p class="gate-error" id="gate-error" role="alert" hidden></p>
+      <button class="btn" id="gate-btn" type="button"></button>
+    </div>
+  </div>
+
+  <!-- 2. Sobre plomo con sello de cera -->
+  <section class="scene" id="scene" hidden>
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+      <div class="env-letter"><span class="env-letter-line"></span><span class="env-letter-line short"></span></div>
+      <div class="env-front env-left"></div>
+      <div class="env-front env-right"></div>
+      <div class="env-front env-bottom"></div>
+      <p class="env-title" id="env-title"></p>
+      <div class="env-flap"></div>
+      <button class="seal" id="seal" type="button" aria-label="Abrir la invitación"></button>
+    </div>
+    <p class="env-hint" id="env-hint"></p>
+  </section>
+
+  <!-- 3. Invitación -->
+  <main id="invitation" hidden>
+    <div class="paper">
+
+      <header class="hero reveal">
+        <svg class="cap" viewBox="0 0 124 84" aria-hidden="true">
+          <path d="M30 42v18c0 11 64 11 64 0V42L62 56Z" fill="#2b2f35"/>
+          <path d="M62 5 120 30 62 55 4 30Z" fill="#14161a"/>
+          <path d="M62 5 120 30 62 55" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="1.5"/>
+          <path d="M62 30 112 37V63" fill="none" stroke="#b9bec5" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="62" cy="30" r="3.4" fill="#b9bec5"/>
+          <rect x="108" y="62" width="8" height="15" rx="2" fill="#b9bec5"/>
+          <path d="M110 77v5M114 77v5" stroke="#b9bec5" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <p class="cap-text" id="cap-text"></p>
+        <h1 class="title" id="title"></h1>
+        <div class="orn" aria-hidden="true"><span></span><i></i><span></span></div>
+      </header>
+
+      <section class="block1 reveal">
+        <div class="b1-img"><img id="b1-img" alt="" decoding="async"></div>
+        <p class="b1-text" id="b1-text"></p>
+      </section>
+
+      <section class="loc reveal" id="sec-loc1">
+        <h2 id="loc1-title"></h2>
+        <div class="map" id="map1"></div>
+        <p class="loc-label" id="loc1-label"></p>
+        <p class="route-info" id="route1"></p>
+        <a class="btn btn-ghost" id="gmaps1" target="_blank" rel="noopener"></a>
+      </section>
+
+      <section class="countdown reveal">
+        <h2 id="cd-title"></h2>
+        <div class="cd-grid" id="cd">
+          <div class="cd-box"><b id="cd-d">00</b><span id="cd-dl"></span></div>
+          <div class="cd-box"><b id="cd-h">00</b><span id="cd-hl"></span></div>
+          <div class="cd-box"><b id="cd-m">00</b><span id="cd-ml"></span></div>
+          <div class="cd-box"><b id="cd-s">00</b><span id="cd-sl"></span></div>
+        </div>
+        <p class="cd-done" id="cd-done" hidden></p>
+      </section>
+
+      <section class="block2 reveal">
+        <div class="b2-img"><img id="b2-img" alt="" decoding="async"></div>
+        <p id="b2-text"></p>
+      </section>
+
+      <section class="loc reveal" id="sec-loc2">
+        <h2 id="loc2-title"></h2>
+        <div class="map" id="map2"></div>
+        <p class="loc-label" id="loc2-label"></p>
+        <p class="route-info" id="route2"></p>
+        <a class="btn btn-ghost" id="gmaps2" target="_blank" rel="noopener"></a>
+      </section>
+
+      <section class="gallery reveal" id="sec-gallery">
+        <h2 id="gal-title"></h2>
+        <div class="carousel" id="carousel" aria-label="Galería de fotos"></div>
+      </section>
+
+      <section class="rsvp reveal" id="rsvp">
+        <h2 id="rsvp-title"></h2>
+        <p class="rsvp-intro" id="rsvp-intro"></p>
+        <form id="rsvp-form" novalidate autocomplete="off">
+          <label class="field">
+            <span id="rsvp-name-label"></span>
+            <input type="text" name="fullName" maxlength="100" required autocomplete="name">
+          </label>
+          <fieldset class="choices">
+            <legend id="rsvp-attend-label"></legend>
+            <label class="choice"><input type="radio" name="attending" value="1" checked><span id="rsvp-yes"></span></label>
+            <label class="choice"><input type="radio" name="attending" value="0"><span id="rsvp-no"></span></label>
+          </fieldset>
+          <label class="field" id="comp-field">
+            <span id="rsvp-comp-label"></span>
+            <input type="number" name="companions" min="0" max="20" inputmode="numeric" placeholder="0">
+          </label>
+          <button class="btn" type="submit" id="rsvp-btn"></button>
+          <p class="form-msg" id="rsvp-msg" role="status" hidden></p>
+        </form>
+      </section>
+
+      <section class="contact reveal">
+        <h2 id="contact-title"></h2>
+        <a class="wa" id="wa-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16.04 3C8.84 3 3 8.8 3 15.95c0 2.28.6 4.5 1.74 6.46L3 29l6.77-1.7a13.1 13.1 0 0 0 6.27 1.6C23.2 28.9 29 23.1 29 15.95 29 8.8 23.2 3 16.04 3Zm0 23.7c-1.95 0-3.86-.52-5.53-1.5l-.4-.23-4.02 1 1.07-3.9-.26-.4a10.6 10.6 0 0 1-1.63-5.7c0-5.86 4.8-10.63 10.7-10.63 5.9 0 10.7 4.77 10.7 10.63 0 5.86-4.8 10.73-10.63 10.73Zm5.87-7.97c-.32-.16-1.9-.93-2.2-1.04-.3-.1-.5-.16-.72.17-.22.32-.84 1.04-1.03 1.25-.19.22-.38.24-.7.08-.33-.16-1.36-.5-2.6-1.6-.96-.85-1.6-1.9-1.8-2.22-.18-.33-.02-.5.14-.66.15-.14.33-.38.5-.57.16-.2.21-.33.32-.55.1-.21.05-.4-.03-.56-.08-.16-.72-1.73-.99-2.37-.26-.62-.52-.54-.72-.55h-.62c-.21 0-.56.08-.85.4-.3.32-1.12 1.1-1.12 2.67 0 1.57 1.15 3.1 1.3 3.32.16.21 2.25 3.43 5.45 4.8.76.33 1.36.52 1.82.67.77.24 1.46.2 2.01.12.61-.09 1.9-.78 2.16-1.53.27-.75.27-1.4.19-1.53-.08-.13-.3-.21-.62-.37Z"/></svg>
+          <span class="wa-label" id="wa-label"></span>
+          <span class="wa-number" id="wa-number"></span>
+        </a>
+        <p class="contact-text" id="contact-text"></p>
+      </section>
+    </div>
+
+    <section class="farewell" id="farewell">
+      <div class="fw-bg" id="fw-bg"></div>
+      <p id="fw-text"></p>
+    </section>
+
+    <footer class="foot">
+      <p id="footer-text"></p>
+      <a href="/admin" class="admin-link" id="admin-link"></a>
+    </footer>
+  </main>
+
+  <!-- Reproductor de música (pequeño, abajo a la izquierda) -->
+  <div class="player" id="player" hidden>
+    <button type="button" id="pl-toggle" aria-label="Pausar o reproducir la música">
+      <svg class="ico-pause" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      <svg class="ico-play" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+    </button>
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z"/></svg>
+    <input type="range" id="pl-vol" min="0" max="100" step="1" aria-label="Volumen">
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
