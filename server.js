@@ -411,7 +411,7 @@ async function handleApi(req, res, url) {
           }
         }
       }
-      const oldFiles = ['block1_image', 'block2_image', 'farewell_image', 'music_file'].filter((k) => k in clean && clean[k] !== current[k]).map((k) => current[k]);
+      const oldFiles = ['block1_image', 'block1_image2', 'block1_image3', 'block2_image', 'farewell_image', 'music_file'].filter((k) => k in clean && clean[k] !== current[k]).map((k) => current[k]);
       tx(() => { for (const [k, v] of Object.entries(clean)) setSetting(k, v); });
       oldFiles.forEach(deleteUploadIfUnused);
       const now = getSettings();

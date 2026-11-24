@@ -55,7 +55,7 @@ uploads/             lo que subas desde el panel (fotos y audio)
 
 - **Resumen:** confirmados (+acompañantes), pendientes, no asistirán, visitas totales, personas distintas,
   quiénes entraron más de una vez, aperturas del sobre, activaciones de ubicación, gráfica de 14 días y últimos ingresos.
-- **Contenido:** pantalla de ubicación, sobre y sello, texto bajo el gorro, título y su tipo de letra, imagen izquierda + texto,
+- **Contenido:** pantalla de ubicación, sobre y sello, texto bajo el gorro, título y su tipo de letra, presentación (hasta 3 imágenes a la izquierda + texto a la derecha),
   ambas ubicaciones (pegando el enlace de Google Maps), cuenta regresiva (fecha, hora, etiquetas), segunda imagen + texto,
   título de la galería, formulario de confirmación, contacto/WhatsApp, mensaje de despedida (imagen + opacidad) y pie de página.
 - **Carrusel:** agregar varias fotos a la vez, ordenarlas y eliminarlas.

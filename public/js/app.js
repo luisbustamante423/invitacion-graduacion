@@ -61,8 +61,7 @@
 
     setText('cap-text', c.cap_text);
     setText('title', c.title);
-    byId('b1-img').src = c.block1_image || '';
-    byId('b1-img').closest('.b1-img').hidden = !c.block1_image;
+    buildBlock1Gallery([c.block1_image, c.block1_image2, c.block1_image3]);
     setText('b1-text', c.block1_text);
 
     setText('loc1-title', c.loc1_title);
@@ -111,6 +110,24 @@
     setText('footer-text', c.footer_text);
     setText('admin-link', c.admin_link_text);
     state.volume = Math.min(100, Math.max(0, num(c.music_volume) ?? 60)) / 100;
+  }
+
+  /* ---------------- presentación: hasta 3 fotos a la izquierda ---------------- */
+  function buildBlock1Gallery(urls) {
+    const box = byId('b1-gallery');
+    const list = urls.map((u) => String(u || '').trim()).filter(Boolean).slice(0, 3);
+    box.innerHTML = '';
+    box.dataset.count = String(list.length);
+    box.hidden = list.length === 0;
+    byId('b1-text').closest('.block1').classList.toggle('no-photos', list.length === 0);
+    list.forEach((url) => {
+      const fig = document.createElement('figure');
+      fig.className = 'b1-photo';
+      const im = document.createElement('img');
+      im.src = url; im.alt = ''; im.decoding = 'async'; im.loading = 'lazy';
+      fig.appendChild(im);
+      box.appendChild(fig);
+    });
   }
 
   /* ---------------- sello de cera ---------------- */
@@ -329,12 +346,13 @@
       if (data.code !== 'Ok' || !data.routes?.length) throw new Error('sin ruta');
       const route = data.routes[0];
       const latlngs = route.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-      L.polyline(latlngs, { color: '#fff', weight: 10, opacity: .9 }).addTo(map);
-      const line = L.polyline(latlngs, { color: '#14161a', weight: 5, opacity: .95 }).addTo(map);
+      L.polyline(latlngs, { color: '#101014', weight: 10, opacity: .92, lineCap: 'round', lineJoin: 'round' }).addTo(map);
+      const line = L.polyline(latlngs, { color: '#E2C078', weight: 5, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(map);
       fit(line.getBounds());
-      info.textContent = `A ${fmtDist(route.distance)} de ti · aprox. ${fmtDur(route.duration)} en auto`;
+      info.textContent = `A ${fmtDist(route.distance)} de ti, aprox. ${fmtDur(route.duration)} en auto`;
     } catch (_) {
-      const line = L.polyline([[me.lat, me.lng], [dest.lat, dest.lng]], { color: '#14161a', weight: 4, dashArray: '8 10' }).addTo(map);
+      L.polyline([[me.lat, me.lng], [dest.lat, dest.lng]], { color: '#101014', weight: 8, opacity: .9 }).addTo(map);
+      const line = L.polyline([[me.lat, me.lng], [dest.lat, dest.lng]], { color: '#E2C078', weight: 4, dashArray: '8 10' }).addTo(map);
       fit(line.getBounds());
       info.textContent = `A ${fmtDist(haversine(me, dest))} en línea recta. Toca el botón para ver la ruta exacta.`;
     }

@@ -40,9 +40,11 @@ const GROUPS = [
     ],
   },
   {
-    id: 'block1', tab: 'content', title: '4. Presentación (imagen izquierda + texto derecha)',
+    id: 'block1', tab: 'content', title: '4. Presentación (3 imágenes a la izquierda + texto a la derecha)',
     fields: [
-      { key: 'block1_image', label: 'Imagen (izquierda)', type: 'image', def: '/img/ejemplo-retrato.svg' },
+      { key: 'block1_image', label: 'Imagen 1 (grande, arriba)', type: 'image', def: '/img/ejemplo-retrato.svg' },
+      { key: 'block1_image2', label: 'Imagen 2 (abajo, izquierda) — opcional', type: 'image', def: '' },
+      { key: 'block1_image3', label: 'Imagen 3 (abajo, derecha) — opcional', type: 'image', def: '' },
       { key: 'block1_text', label: 'Texto (derecha)', type: 'textarea', def: 'Con mucha alegría te invito a compartir conmigo uno de los días más importantes de mi vida. Después de años de esfuerzo, llegó el momento de celebrar juntos este logro.' },
     ],
   },
